@@ -1,0 +1,4 @@
+Software Testing,CSE311s,100
+mahmoud mohamed,2001866s,10,10,20,60
+essam sasa,20018667,e,10,20,30
+help,2001877s,2,1,4,2
