@@ -1,0 +1,2 @@
+Software Engineering,CSE101s,200
+Ahmed,1402225s,10,10,20,60
