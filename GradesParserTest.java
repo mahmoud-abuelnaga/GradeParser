@@ -11,7 +11,6 @@ import org.mockito.Mock;
 
 public class GradesParserTest {
 
-//    private GradesParser parser;
     @Mock
     private BufferedReader mockReader;
 
@@ -35,28 +34,6 @@ public class GradesParserTest {
         String[] line2 = {"Ahmed", "1402225s", "10", "10", "20", "60"};
         when(mockReader.readLine()).thenReturn(line1[0],line1[1],line1[2],line2[0],line2[1],line2[2],line2[3],line2[4],line2[5],null);
 
-
-//        when(mockReader.readLine()).thenReturn(line1[0])
-//                .thenReturn(line1[1])
-//                .thenReturn(line1[2])
-//                .thenReturn(line2[0])
-//                .thenReturn(line2[1]).thenReturn(line2[2]).thenReturn(line2[3]).thenReturn(line2[4]).thenReturn(line2[5])
-//                .thenReturn(null);
-
-//        final int[] lineCount = {0};
-//        String[] lines = {"Software Engineering", "SE101", "100",  // ... all file lines here
-//                "Ahmed Hassan", "12345678", "30", "25", "40", "50"};
-
-//        when(mockReader.readLine()).thenAnswer(invocation -> {
-//            if (lineCount[0] >= lines.length) {
-//                return null;
-//            }
-//            return lines[lineCount[0]++];
-//        });
-
-
-
-        // Mock validations (assuming successful validation)
         when(InputValidator.validSubjectName(anyString())).thenReturn(true);
         when(InputValidator.validSubjectCode(anyString())).thenReturn(true);
         when(InputValidator.validFullMark(anyInt())).thenReturn(true);
@@ -127,7 +104,6 @@ public class GradesParserTest {
         assertEquals(Integer.parseInt(line2[4]), studentMarks.getMidterm());
         assertEquals(Integer.parseInt(line2[5]), studentMarks.getFinal());
 
-//        assertThrows(Exception.class, () -> parser.parse("test_grades.txt"));
     }
 
     @Test
@@ -161,7 +137,7 @@ public class GradesParserTest {
         assertEquals(Integer.parseInt(line2[4]), studentMarks.getMidterm());
         assertEquals(Integer.parseInt(line2[5]), studentMarks.getFinal());
 
-//        assertThrows(Exception.class, () -> parser.parse("test_grades.txt"));
+
     }
 
     @Test
@@ -195,7 +171,6 @@ public class GradesParserTest {
         assertEquals(Integer.parseInt(line2[4]), studentMarks.getMidterm());
         assertEquals(Integer.parseInt(line2[5]), studentMarks.getFinal());
 
-//        assertThrows(Exception.class, () -> parser.parse("test_grades.txt"));
     }
 
     @Test
