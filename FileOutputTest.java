@@ -6,6 +6,7 @@ import java.io.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+@RunWith(MockitoJUnitRunner.class)
 public class FileOutputTest {
 
     // Test case for successfully writing output to file
