@@ -36,6 +36,9 @@ public class InputValidator {
     }
 
     public static boolean validStudentName(final String name) {
+        if( name == "" ) //if string is empty
+        return false;
+        else
         return !startWithSpace(name) && onlyAlphaSpaces(name);
     }
 
