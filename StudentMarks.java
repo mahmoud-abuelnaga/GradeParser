@@ -1,3 +1,5 @@
+package org.example;
+
 public class StudentMarks {
     // attributes
     private final Student student;
@@ -7,9 +9,22 @@ public class StudentMarks {
     private int fin = 0;
 
     // methods
+//    public StudentMarks(Student student) {
+//
+//        if (student == null){throw IllegalArgumentException.;}
+//
+//        this.student = student;
+//
+//    }
     public StudentMarks(Student student) {
+        if (student == null) {
+            throw new IllegalArgumentException("Student cannot be null");
+        }
+
         this.student = student;
     }
+
+
 
     public StudentMarks(Student student, int activities, int oral, int midterm, int fin) {
         this.student = student;
@@ -28,15 +43,19 @@ public class StudentMarks {
     }
 
     public void setActivities(int activities) {
-        this.activities = activities;
+        this.activities = Math.max(activities , 0);
+
     }
 
     public int getOral() {
         return oral;
+
     }
 
     public void setOral(int oral) {
-        this.oral = oral;
+        this.oral =Math.max( oral , 0);
+
+
     }
 
     public int getMidterm() {
@@ -44,7 +63,8 @@ public class StudentMarks {
     }
 
     public void setMidterm(int midterm) {
-        this.midterm = midterm;
+        this.midterm = Math.max( midterm , 0);
+
     }
 
     public int getFinal() {
@@ -52,11 +72,12 @@ public class StudentMarks {
     }
 
     public void setFinal(int fin) {
-        this.fin = fin;
+        this.fin = Math.max(fin, 0);
+
     }
 
     public int getTotal() {
-        return activities + oral + midterm + fin;
+        return Math.max((activities + oral + midterm + fin), 0);
     }
 
     public String getGrade() {
@@ -88,8 +109,11 @@ public class StudentMarks {
             return "D+";
         } else if ((60 <= total) && (total < 64)) {
             return "D";
-        } else {
+        } else if((total<60)&& (total>= 0)){
             return "F";
+        }
+        else {
+            return "Not allowed";
         }
     }
 
@@ -122,14 +146,15 @@ public class StudentMarks {
             return "1.3";
         } else if ((60 <= total) && (total < 64)) {
             return "1";
-        } else {
+        } else if((total<60)&& (total>= 0)){
             return "0";
         }
+        else {
+            return "Not allowed";
+        }
     }
-
     @Override
     public String toString() {
         return student + " " + this.getGPA() + " " + this.getGrade();
     }
-    
 }
