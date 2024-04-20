@@ -21,6 +21,9 @@ public class InputValidator {
 
     // main functions
     public static boolean validSubjectName(final String name) {
+        if( name == "" ) //if string is empty
+        return false;
+        else
         return !startWithSpace(name) && onlyAlphaSpaces(name);
     }
     
