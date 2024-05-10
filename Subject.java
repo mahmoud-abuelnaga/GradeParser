@@ -6,6 +6,14 @@ public class Subject {
 
     // methods
     public Subject(String name, String code, int fullMark) {
+        if (name == null) {
+            name = "";
+        }
+
+        if (code == null) {
+            code = "";
+        }
+
         this.name = name;
         this.code = code;
         this.fullMark = fullMark;

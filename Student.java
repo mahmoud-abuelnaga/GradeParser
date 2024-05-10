@@ -14,6 +14,10 @@ public class Student {
     }
 
     public void setName(String name) {
+        if (name == null) {
+            name = "";
+        }
+        
         this.name = name;
     }
 

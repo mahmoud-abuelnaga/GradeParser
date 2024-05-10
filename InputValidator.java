@@ -21,13 +21,17 @@ public class InputValidator {
 
     // main functions
     public static boolean validSubjectName(final String name) {
-        if( name == "" ) //if string is empty
-        return false;
+        if (name == "") // if string is empty
+            return false;
         else
-        return !startWithSpace(name) && onlyAlphaSpaces(name);
+            return !startWithSpace(name) && onlyAlphaSpaces(name);
     }
-    
+
     public static boolean validSubjectCode(final String code) {
+        if (code == null) {
+            return false;
+        }
+
         return code.matches("^[a-zA-Z]{3}[0-9]{3}s?$");
     }
 
@@ -36,14 +40,18 @@ public class InputValidator {
     }
 
     public static boolean validStudentName(final String name) {
-        if( name == "" ) //if string is empty
-        return false;
+        if (name == "") // if string is empty
+            return false;
         else
-        return !startWithSpace(name) && onlyAlphaSpaces(name);
+            return !startWithSpace(name) && onlyAlphaSpaces(name);
     }
 
     public static boolean validStudentNumber(final String num) {
-        return num.matches("[0-9]{7}([0-9]|[a-zA-Z])");
+        if (num == null || num == "") {
+            return false;
+        }
+
+        return num.matches("^[0-9]{7}([0-9]|[a-zA-Z])$");
     }
 
     public static boolean validActivites(final int mark) {
@@ -53,7 +61,7 @@ public class InputValidator {
     public static boolean validOral(final int mark) {
         return (0 <= mark) && (mark <= 10);
     }
-    
+
     public static boolean validMidterm(final int mark) {
         return (0 <= mark) && (mark <= 20);
     }

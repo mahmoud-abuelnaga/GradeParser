@@ -1,5 +1,6 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SubjectTest {
 
@@ -32,6 +33,17 @@ public class SubjectTest {
 
         assertEquals(expected, subj.toString());
 
+    }
+
+    @Test
+    public void testNulls() {
+        subj = new Subject(null, null, 0);
+
+        assertTrue(subj.getName() == "");
+        assertTrue(subj.getCode() == "");
+        assertEquals(0, subj.getFullMark());
+        System.out.println();
+        assertEquals("Subject Name:  Max Mark: 0", subj.toString());
     }
 
 
