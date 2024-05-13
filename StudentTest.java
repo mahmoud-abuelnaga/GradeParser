@@ -27,4 +27,10 @@ public class StudentTest {
         Student student = new Student("John", "12345");
         assertEquals("John 12345", student.toString());
     }
+
+    @Test
+    public void testNulls() {
+        Student student = new Student("", "");
+        assertEquals(" ", student.toString());
+    }
 }

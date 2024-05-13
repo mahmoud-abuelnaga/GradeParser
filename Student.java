@@ -6,6 +6,10 @@ public class Student {
     // methods
     public Student(String name, String number) {
         setName(name);
+        
+        if (number == null) {
+            number = "";
+        }
         this.number = number;
     }
 

@@ -46,6 +46,17 @@ public class SubjectTest {
         assertEquals("Subject Name:  Max Mark: 0", subj.toString());
     }
 
+    @Test
+    public void testEmpty() {
+        subj = new Subject("", "", 0);
+
+        assertTrue(subj.getName() == "");
+        assertTrue(subj.getCode() == "");
+        assertEquals(0, subj.getFullMark());
+        System.out.println();
+        assertEquals("Subject Name:  Max Mark: 0", subj.toString());
+    }
+
 
     @Test
     public void TestNull() {
