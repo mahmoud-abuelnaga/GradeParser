@@ -16,6 +16,7 @@ public class StudentMarks {
 //        this.student = student;
 //
 //    }
+
     public StudentMarks(Student student) {
         if (student == null) {
             throw new IllegalArgumentException("Student cannot be null");
@@ -23,7 +24,6 @@ public class StudentMarks {
 
         this.student = student;
     }
-
 
 
     public StudentMarks(Student student, int activities, int oral, int midterm, int fin) {
@@ -64,7 +64,6 @@ public class StudentMarks {
 
     public void setMidterm(int midterm) {
         this.midterm = Math.max( midterm , 0);
-
     }
 
     public int getFinal() {
