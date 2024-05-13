@@ -352,12 +352,84 @@ public class StudentMarksTest {
     }
 
     @Test
-    public void LowerBoundaryOfCMinus() {
-        StudentMarks studentMarks = new StudentMarks(student, 7, 7, 26, 25);
+    public void LowerBoundaryOfDPlus() {
+        StudentMarks studentMarks = new StudentMarks(student, 7, 6, 26, 25);
 
-        assertEquals(65, studentMarks.getTotal());
+        assertEquals(64, studentMarks.getTotal());
         assertEquals("D+", studentMarks.getGrade());
         assertEquals("1.3", studentMarks.getGPA());
+    }
+
+    @Test
+    public void upperBoundaryofD() {
+        StudentMarks studentMarks = new StudentMarks(student, 7, 6, 25, 25);
+
+        assertEquals(63, studentMarks.getTotal());
+        assertEquals("D", studentMarks.getGrade());
+        assertEquals("1", studentMarks.getGPA());
+    }
+
+    @Test
+    public void NegUpperBoundaryofD() {
+        StudentMarks studentMarks = new StudentMarks(student, 7, 6, 24, 25);
+
+        assertEquals(62, studentMarks.getTotal());
+        assertEquals("D", studentMarks.getGrade());
+        assertEquals("1", studentMarks.getGPA());
+    }
+
+    @Test
+    public void PosLowerBoundaryOfD() {
+        StudentMarks studentMarks = new StudentMarks(student, 7, 6, 24, 24);
+
+        assertEquals(61, studentMarks.getTotal());
+        assertEquals("D", studentMarks.getGrade());
+        assertEquals("1", studentMarks.getGPA());
+    }
+
+    @Test
+    public void LowerBoundaryOfD() {
+        StudentMarks studentMarks = new StudentMarks(student, 7, 6, 23, 24);
+
+        assertEquals(60, studentMarks.getTotal());
+        assertEquals("D", studentMarks.getGrade());
+        assertEquals("1", studentMarks.getGPA());
+    }
+
+    @Test
+    public void upperBoundaryofF() {
+        StudentMarks studentMarks = new StudentMarks(student, 7, 6, 22, 24);
+
+        assertEquals(59, studentMarks.getTotal());
+        assertEquals("F", studentMarks.getGrade());
+        assertEquals("0", studentMarks.getGPA());
+    }
+
+    @Test
+    public void NegUpperBoundaryofF() {
+        StudentMarks studentMarks = new StudentMarks(student, 7, 6, 21, 24);
+
+        assertEquals(58, studentMarks.getTotal());
+        assertEquals("F", studentMarks.getGrade());
+        assertEquals("0", studentMarks.getGPA());
+    }
+
+    @Test
+    public void PosLowerBoundaryOfF() {
+        StudentMarks studentMarks = new StudentMarks(student, 1, 0, 0, 0);
+
+        assertEquals(1, studentMarks.getTotal());
+        assertEquals("F", studentMarks.getGrade());
+        assertEquals("0", studentMarks.getGPA());
+    }
+
+    @Test
+    public void LowerBoundaryOfF() {
+        StudentMarks studentMarks = new StudentMarks(student, 0, 0, 0, 0);
+
+        assertEquals(0, studentMarks.getTotal());
+        assertEquals("F", studentMarks.getGrade());
+        assertEquals("0", studentMarks.getGPA());
     }
 
     @Test
