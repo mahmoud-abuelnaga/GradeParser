@@ -282,4 +282,16 @@ public class GradesParserTest {
         assertEquals(Integer.parseInt(line2[11]), studentMarks2.getFinal());
 
     }
+
+    @Test
+    public void testOnlySubject() throws Exception {
+        String line1[] = {"Computer Programming", "CSE021s", "100"};
+        when(mockReader.readLine()).thenReturn(line1[0],line1[1],line1[2]);
+
+        MarksSheet sheet = GradesParser.parse("./Test files/onlySubject.txt");
+
+        assertEquals(line1[0], sheet.getSubject().getName());
+        assertEquals(line1[1], sheet.getSubject().getCode());
+        assertEquals(Integer.parseInt(line1[2]), sheet.getSubject().getFullMark());
+    }
 }

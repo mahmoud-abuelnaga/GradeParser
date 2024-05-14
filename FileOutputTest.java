@@ -20,7 +20,7 @@ public class FileOutputTest {
         // Mocking behavior
         when(sheetMock.toString()).thenReturn(expected);
 
-        String path = "test_output.txt";
+        String path = "./output test files/test_output.txt";
 
         // Calling the method under test
         FileOutput.outputFile(sheetMock, path);
@@ -52,5 +52,30 @@ public class FileOutputTest {
         sheet.setSubject(new Subject("Testing", "CSE", 100));
         sheet.addMark(new StudentMarks(new Student("John", "12345"), 15, 5, 20, 60));
         FileOutput.outputFile(sheet, null);
+    }
+
+    @Test
+    public void testOutputEmptyString() throws IOException {
+        String expected = "";
+
+        // Mocking behavior
+        when(sheetMock.toString()).thenReturn(expected);
+
+        String path = "./output test files/testEmpty.txt";
+
+        // Calling the method under test
+        FileOutput.outputFile(sheetMock, path);
+
+        // Verifying file creation and content
+        File file = new File(path);
+        assertTrue(file.exists());
+
+        BufferedReader reader = new BufferedReader(new FileReader(path));
+        String line = reader.readLine();
+        assertEquals(null, line);
+        reader.close();
+
+        // Cleaning up
+        file.delete();
     }
 }
