@@ -22,7 +22,8 @@ public class GradesParser {
                 if (subStrings.length != 3) {
                     subj = new Subject("Unknown", "Unknown", 100);
                 } else {
-                    String name = subStrings[0].strip();
+                    // String name = subStrings[0].strip();
+                    String name = subStrings[0].stripTrailing();
                     String code = subStrings[1].strip();
                     int fullMark = Integer.parseInt(subStrings[2].strip());
 
@@ -48,7 +49,8 @@ public class GradesParser {
                     continue;
                 }
 
-                String name = subStrings[0].strip();
+                // String name = subStrings[0].strip();
+                String name = subStrings[0].stripTrailing();
                 String number = subStrings[1].strip();
                 int activities, oral, mid, fin;
 
