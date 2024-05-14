@@ -64,6 +64,15 @@ public class StudentMarksTest {
     }
 
     @Test
+    public void posLowerBoundaryOfAplus() {
+        StudentMarks studentMarks = new StudentMarks(student, 8, 20, 30, 40);
+
+        assertEquals(98, studentMarks.getTotal());
+        assertEquals("A+", studentMarks.getGrade());
+        assertEquals("4", studentMarks.getGPA());
+    }
+
+    @Test
     public void lowerBoundaryOfAplus() {
         StudentMarks studentMarks = new StudentMarks(student, 7, 20, 30, 40);
 
