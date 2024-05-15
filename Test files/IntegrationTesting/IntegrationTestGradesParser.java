@@ -9,17 +9,14 @@ public class IntegrationTestGradesParser {
 
     @Before
     public void setUp() throws IOException {
-        // Create a temporary file
         tempFile = new File("testGradesParser.txt");
-        // Write test data to the temporary file
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile))) {
-            bw.write("Physics, PHY102, 100\nJohn Doe, 2001866s, 10, 10, 20, 60");
+            bw.write("Physics, PHY104, 100\nFooz Deryf, 2088866s, 10, 10, 20, 60");
         }
     }
 
     @After
     public void tearDown() {
-        // Ensure the temporary file is deleted after tests
         if (tempFile != null && tempFile.exists()) {
             tempFile.delete();
         }
@@ -27,23 +24,63 @@ public class IntegrationTestGradesParser {
 
     @Test
     public void testGradesParserIntegration() throws Exception {
-        // Parse the file
         MarksSheet sheet = GradesParser.parse(tempFile.getAbsolutePath());
 
-        // Detailed validation
-        assertNotNull("Sheet should not be null", sheet);
-        assertEquals("Subject name should match", "Physics", sheet.getSubject().getName());
-        assertEquals("Subject code should match", "PHY102", sheet.getSubject().getCode());
-        assertEquals("Full mark should be 100", 100, sheet.getSubject().getFullMark());
-        assertNotNull("Marks list should not be null", sheet.getMarks());
-        assertEquals("Should have one entry for marks", 1, sheet.getMarks().size());
+        assertNotNull(sheet);
+        assertEquals("Physics", sheet.getSubject().getName());
+        assertEquals("PHY104", sheet.getSubject().getCode());
+        assertEquals(100, sheet.getSubject().getFullMark());
+        assertNotNull(sheet.getMarks());
+        assertEquals(1, sheet.getMarks().size());
         StudentMarks marks = sheet.getMarks().get(0);
-        assertNotNull("Marks should not be null", marks);
-        assertEquals("Student name should match", "John Doe", marks.getStudent().getName());
-        assertEquals("Student number should match", "2001866s", marks.getStudent().getNumber());
-        assertEquals("Activities mark should be 10", 10, marks.getActivities());
-        assertEquals("Oral mark should be 10", 10, marks.getOral());
-        assertEquals("Midterm mark should be 20", 20, marks.getMidterm());
-        assertEquals("Final mark should be 60",60, marks.getFinal());
+        assertNotNull(marks);
+        assertEquals("Fooz Deryf", marks.getStudent().getName());
+        assertEquals("2088866s", marks.getStudent().getNumber());
+        assertEquals(10, marks.getActivities());
+        assertEquals(10, marks.getOral());
+        assertEquals(20, marks.getMidterm());
+        assertEquals(60, marks.getFinal());
     }
+
+    @Test
+    public void testInvalidSubjectDetails() throws IOException, Exception {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile))) {
+            bw.write("123, PHY@02, 34566\nFooz DFAR, 2008886s, 10, 10, 20, 60");
+        }
+
+        MarksSheet sheet = GradesParser.parse(tempFile.getAbsolutePath());
+
+        assertEquals("Unknown", sheet.getSubject().getName());
+        assertEquals("Unknown", sheet.getSubject().getCode());
+        assertEquals(100, sheet.getSubject().getFullMark());
+    }
+
+    @Test
+    public void testInvalidStudentDetails() throws IOException, Exception {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile))) {
+            bw.write("Physics, PHY106, 100\nFooz 123, 2001866!, 10, 10, 20, 60");
+        }
+
+        MarksSheet sheet = GradesParser.parse(tempFile.getAbsolutePath());
+
+        StudentMarks marks = sheet.getMarks().get(0);
+        assertEquals("Unknown", marks.getStudent().getName());
+        assertEquals("Unknown", marks.getStudent().getNumber());
+    }
+
+    @Test
+    public void testInvalidScores() throws IOException, Exception {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(tempFile))) {
+            bw.write("Physics, PHY102, 100\nFooz Dfer, 2001866s, -10, 222, 120, -1");
+        }
+
+        MarksSheet sheet = GradesParser.parse(tempFile.getAbsolutePath());
+
+        StudentMarks marks = sheet.getMarks().get(0);
+        assertEquals(0, marks.getActivities());
+        assertEquals(0, marks.getOral());
+        assertEquals(0, marks.getMidterm());
+        assertEquals(0, marks.getFinal());
+    }
+
 }
