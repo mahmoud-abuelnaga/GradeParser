@@ -35,6 +35,61 @@ public class WhiteBox {
         assertEquals("0", studentMarks.getGPA());
     }
 
+
+@Test
+    public void testGetGPA_Four() {
+        StudentMarks studentMarks = new StudentMarks(student, 10, 20, 30 , 40);
+        // discovered that , more than 100 it would give an F overlapping
+        assertEquals("4", studentMarks.getGPA());
+    }
+
+    @Test
+    public void testGetGPA_ThreePointSeven() {
+        StudentMarks studentMarks = new StudentMarks(student, 10, 20, 20, 40);
+
+        assertEquals("3.7", studentMarks.getGPA());
+    }
+    @Test
+    public void testGetGPA_TwoPointThree() {
+        StudentMarks studentMarks = new StudentMarks(student, 10, 20, 20, 25);
+
+        assertEquals("2.3", studentMarks.getGPA());
+    }
+    @Test
+    public void testGetGPA_OnePointThree() {
+        StudentMarks studentMarks = new StudentMarks(student, 10, 10, 20, 25);
+
+        assertEquals("1.3", studentMarks.getGPA());
+    }
+    @Test
+    public void testGetGPA_OnePointSeven() {
+        StudentMarks studentMarks = new StudentMarks(student, 10, 10, 20, 28);
+
+        assertEquals("1.7", studentMarks.getGPA());
+    }
+    @Test
+    public void testGetGPA_TwoPointSeven() {
+        StudentMarks studentMarks = new StudentMarks(student, 10, 20, 20, 29);
+
+        assertEquals("2.7", studentMarks.getGPA());
+    }
+
+    @Test
+    public void testGetGPA_Two() {
+        StudentMarks studentMarks = new StudentMarks(student, 10, 20, 20, 20);
+
+        assertEquals("2", studentMarks.getGPA());
+    }
+
+    @Test
+    public void testGetGPA_One() {
+        StudentMarks studentMarks = new StudentMarks(student, 10, 20, 10, 20);
+
+        assertEquals("1", studentMarks.getGPA());
+    }
+
+
+    
     //for condition coverage
     @Test
     public void testValidMidterm() {
