@@ -1,0 +1,15 @@
+import static org.junit.Assert.*;
+import org.junit.Test;
+import java.io.*;
+
+public class IntegrationTestStudentMarks {
+    @Test
+    public void testStudentMarksWithStudent() {
+        Student student = new Student("John Doe", "1234567");
+        StudentMarks marks = new StudentMarks(student, 10, 20, 30, 40);
+        assertEquals("John Doe", marks.getStudent().getName());
+        assertEquals("1234567", marks.getStudent().getNumber());
+        assertEquals(100, marks.getTotal()); // Assuming total is a sum of marks
+    }
+}
+
